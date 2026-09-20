@@ -20,6 +20,5 @@ Test function(s) used to evaluate the methods.
 ### `newton.py`
 - `newton(f, grad_f, hess_f, x0, tol, max_iter)`: minimizes `f` by solving `H(x) d = -grad_f(x)` for the search direction `d` at each step (instead of just using `-grad_f(x)`), with the step size again chosen by `backtracking_line_search`. Same return format as `steepest_descent`. On `f1`, this direction also incorporates curvature information from the Hessian, which is why it converges in far fewer iterations than Steepest Descent.
 
-## Coming soon
-
-- `conjugate_gradient.py`: Conjugate Gradient Method.
+### `conjugate_gradient.py`
+- `conjugate_gradient(f, grad_f, x0, tol, max_iter)`: nonlinear Conjugate Gradient (Fletcher-Reeves). Builds each direction from the current gradient plus a scaled version of the previous direction (`beta` weight), instead of only the current gradient, which avoids the zig-zagging of Steepest Descent without needing the Hessian like Newton. Restarts to plain steepest descent every `n` iterations (`n` = number of variables), which is standard practice since `f1` is not exactly quadratic. Same return format as the other methods.
