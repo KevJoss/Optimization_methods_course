@@ -22,6 +22,15 @@ def grad_f1(x, d=D):
     return np.array([df_dx1, df_dx2])
 
 
+def hess_f1(x, d=D):
+    """Hessian of f1, obtained analytically by differentiating grad_f1 again."""
+    x1, x2 = x
+    d2f_dx1dx1 = 12 * (x1 - d) ** 2 + 2
+    d2f_dx1dx2 = -4 * d
+    d2f_dx2dx2 = 8 * d ** 2
+    return np.array([[d2f_dx1dx1, d2f_dx1dx2], [d2f_dx1dx2, d2f_dx2dx2]])
+
+
 # f1 is a sum of two squared (even-power) terms, so f1 >= 0 everywhere.
 # The minimum f1 = 0 is reached when both terms vanish: x1 = d and x1 = 2*d*x2,
 # i.e. x2 = 1/2. This exact solution is used as reference to measure error.
